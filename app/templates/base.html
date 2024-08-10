@@ -4,98 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}{% endblock %}</title>
-  <style>
-    *{
-      padding: opx;
-      link-style: none;
-      text-decoration: none;
-    }
-
-    body {
-        font-family: 'Open Sans', sans-serif;
-        background-color: #f7f7f7;
-        color: #333;
-        margin: 0;
-        padding: 0;
-    }
-
-    header {
-        background-color: #0096c7;
-        color: #fff;
-        text-align: center;
-    }
-
-    footer {
-        background-color: #ccc;
-        color: #333;
-        padding: 20px;
-        text-align: center;
-    }
-
-    nav {
-        background-color: #0096c7;
-        color: #fff;
-        height: 50px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    nav ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-    }
-
-    nav ul li {
-        margin: 0 10px;
-    }
-
-    nav ul li a {
-        color: #fff;
-        text-decoration: none;
-        font-size: 16px;
-        padding: 15px;
-        transition: all 0.3s ease;
-    }
-
-    nav ul li a:hover {
-        background-color: #32bbe8;
-    }
-
-    nav ul li.active a {
-        background-color: #666;
-    }
-
-    nav ul li.active a:hover {
-        background-color: #999;
-    }
-
-    a{
-      color: #505050;
-    }
-
-
-  </style>
+  <!-- Carregar o static -->
+  {% load static %}
+  <!-- Linkando o arquivo CSS -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/cars_list.css' %}">
+  <link rel="stylesheet" href="{% static 'css/car_detail.css' %}">
 </head>
 <body>
   <header>
     <nav>
-      <ul>
-        {% if user.is_authenticated %}
-          <li> Olá, {{ user.username }}
-          <li><a href="{% url 'new_car' %}">Cadastrar Carro</a></li> 
-          <li><a href="{% url 'logout' %}">Logout</a></li>          
-        {% endif %}
+      <div class="logo">
+        <a href="{% url 'cars_list' %}"><h2>Carros</h2></a>
+      </div>
 
-        {% if not user.is_authenticated %}
-          <li><a href="{% url 'register' %}">Cadastre-se</a></li>
-          <li><a href="{% url 'login' %}">Login</a></li>            
-        {% endif %}
-        <li><a href="{% url 'cars_list' %}">Carros</a></li>
-      </ul>
-
+      <div class="links">
+        <ul>
+          {% if user.is_authenticated %}
+            <li> Olá, {{ user.username }}!</li>
+            <li><a class="btn newcar" href="{% url 'new_car' %}">Cadastrar Carro</a></li> 
+            <li><a class="btn signup" href="{% url 'logout' %}">Logout</a></li>
+          {% else %} 
+          <li><a class="btn signup" href="{% url 'register' %}">Cadastre-se</a></li>
+          <li><a class="btn login" href="{% url 'login' %}">Login</a></li>          
+          {% endif %}
+        </ul>
+      </div>
     </nav>
   </header>
 
@@ -105,7 +39,9 @@
   </main>
 
   <footer>
-    <p>Todos direiros reservados a SETMulticars &copy; 2024 || Powered_by: @setprogramacao</p>
+    <div class="footer-content">
+      <p>Todos direiros reservados a SETMulticars &copy; 2024 || Powered_by: @setprogramacao</p>
+    </div>
   </footer>
 </body>
 </html>

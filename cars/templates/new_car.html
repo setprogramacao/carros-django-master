@@ -3,10 +3,58 @@
 {% block content %}
     <form method='post' enctype='multipart/form-data'>
         {% csrf_token %}
-        <table>
-            {{ form.as_table }}
-        </table>
+        <h1>Cadastre novo Carro</h1>
 
-        <input type="submit" value="Cadastrar" class="btn btn-primary">
+        <div>
+          {{ form.model.errors }}
+          <label>Modelo:</label>
+          {{ form.model }}
+        </div>
+    
+        <div>
+            {{ form.brand.errors }}
+            <label>Selecione a marca:</label>
+            {{ form.brand }}
+        </div>
+    
+        <div>
+            {{ form.factory_year.errors }}
+            <label>Ano de Fabrico:</label>
+            {{ form.factory_year }}
+        </div>
+    
+        <div>
+          {{ form.model_year.errors }}
+          <label>Ano do Modelo:</label>
+          {{ form.model_year }}
+        </div>
+    
+        <div>
+            {{ form.plate.errors }}
+            <label>Placa do carro:</label>
+            {{ form.plate }}
+        </div>
+    
+        <div>
+            {{ form.value.errors }}
+            <label>Valor:</label>
+            {{ form.value }}
+        </div>
+    
+        <div>
+          {{ form.photo.errors }}
+          <label>Adiciona a imagem:</label>
+          {{ form.photo }}
+        </div>
+    
+        <div>
+            {{ form.bio.errors }}
+            <label>Faça uma descrição:</label>
+            {{ form.bio }}
+        </div>
+
+        <div>
+            <input class="input-sub" type="submit" value="Cadastrar">
+        </div>
     </form>
 {% endblock content %}
